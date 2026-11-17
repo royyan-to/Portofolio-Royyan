@@ -14,7 +14,7 @@ import { Navbar } from './components/Navbar';
 import { ProjectDetailPage } from './components/ProjectDetailPage';
 import { Projects } from './components/Projects';
 import { Skills } from './components/Skills';
-import { projects, sampleProjectPlaceholders } from './data/projects';
+import { projects } from './data/projects';
 
 function parseProjectSlug(pathname: string): string | null {
   const match = pathname.match(/^\/projects\/([^/]+)\/?$/);
@@ -71,9 +71,7 @@ export default function App() {
   };
 
   const selectedProject = activeProjectSlug
-    ? [...projects, ...sampleProjectPlaceholders].find(
-        (item) => item.slug === activeProjectSlug
-      ) ?? null
+    ? projects.find((item) => item.slug === activeProjectSlug) ?? null
     : null;
 
   return (

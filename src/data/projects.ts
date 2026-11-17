@@ -1,6 +1,7 @@
 import type { ProjectCategory, ProjectItem } from './types';
 
 export const PROJECT_CATEGORIES: readonly ProjectCategory[] = [
+  'AI-Assisted Development',
   'Network Configuration',
   'MikroTik',
   'GNS3',
@@ -11,63 +12,35 @@ export const PROJECT_CATEGORIES: readonly ProjectCategory[] = [
 ] as const;
 
 /**
- * Daftar proyek & praktik nyata milik Royyan Abdurrahman.
- * Mulai dengan array kosong agar tidak ada proyek fiktif.
- * Tambahkan proyek nyata Anda ke array `projects` di bawah ini
- * dan simpan gambar/screenshot proyek di public/projects/.
+ * Daftar proyek nyata milik Royyan Abdurrahman.
+ * Simpan gambar/screenshot proyek di public/projects/ lalu tambahkan properti `image: '/projects/...'`
+ * jika tangkapan layar aplikasi sudah tersedia.
  */
-export const projects: ProjectItem[] = [];
-
-/**
- * Contoh template / placeholder proyek untuk memperlihatkan struktur dokumentasi
- * proyek dan halaman detail (/projects/[slug]).
- * Ditandai secara eksplisit sebagai Sample Placeholder dan tidak diklaim sebagai karya nyata.
- */
-export const sampleProjectPlaceholders: ProjectItem[] = [
+export const projects: ProjectItem[] = [
   {
-    slug: 'sample-packet-tracer-vlan-routing',
-    title: '[Sample Placeholder] Simulasi Segmentasi VLAN & Inter-VLAN Routing',
+    slug: 'usahapilot-ai',
+    title: 'UsahaPilot AI',
     shortDescription:
-      'Contoh struktur dokumentasi tugas praktik simulasi pemisahan segmen jaringan menggunakan VLAN pada Cisco Packet Tracer.',
-    category: 'Cisco Packet Tracer',
-    technologies: ['Cisco Packet Tracer', 'VLAN', 'Trunking 802.1Q', 'IP Addressing'],
+      'An Android application designed to help small and medium-sized businesses (UMKM) manage their business operations through digital tools and AI assistance.',
+    category: 'AI-Assisted Development',
+    technologies: ['Android', 'Google AI Studio', 'AI-Assisted Development', 'Git', 'GitHub'],
+    githubUrl: 'https://github.com/royyan-to/FOR-UMKM',
     objective:
-      'Contoh tujuan proyek: Memahami cara memisahkan broadcast domain pada satu switch ke beberapa VLAN serta menghubungkannya melalui router.',
+      'Membantu pelaku usaha mikro, kecil, dan menengah (UMKM) mengelola operasional usaha secara lebih teratur menggunakan alat bantu digital dan asistensi AI pada perangkat Android.',
+    contributionHeading: 'Kontribusi & Peran (AI-Assisted Development)',
     implementationOverview: [
-      'Menyusun topologi dasar dengan satu router, satu switch manageable, dan beberapa host uji di Cisco Packet Tracer.',
-      'Mengonfigurasi VLAN ID dan menetapkan port access untuk masing-masing segmen serta mode trunk menuju router.',
-      'Mengatur sub-interface pada router (Router-on-a-Stick) dan menguji konektivitas antar-VLAN menggunakan perintah ping.',
+      'Developed the initial product idea and concept.',
+      'Planned application features and requirements.',
+      'Directed AI-assisted development through prompts.',
+      'Tested the application and identified issues.',
+      'Evaluated results and requested improvements using AI.',
     ],
     learningOutcomes: [
-      'Memahami konsep segmentasi jaringan logis dengan VLAN dibandingkan pemisahan fisik.',
-      'Mengenal fungsi port access vs trunk serta enkapsulasi 802.1Q.',
-      'Berlatih memeriksa tabel VLAN dan verifikasi konektivitas dasar.',
+      'Memahami cara merumuskan ide produk dan memecahnya menjadi kebutuhan fitur yang jelas.',
+      'Melatih kemampuan mengarahkan proses pengembangan aplikasi berbantuan AI secara iteratif melalui prompting.',
+      'Membiasakan proses pengujian fungsional, identifikasi bug/kendala, serta evaluasi hasil perbaikan.',
     ],
-    status: 'Experimental',
-    dateLabel: 'Sample Template',
-    isSamplePlaceholder: true,
-  },
-  {
-    slug: 'sample-mikrotik-basic-gateway-dhcp',
-    title: '[Sample Placeholder] Konfigurasi Dasar Gateway, DHCP Server & NAT',
-    shortDescription:
-      'Contoh struktur dokumentasi eksperimen laboratorium jaringan lokal menggunakan router MikroTik.',
-    category: 'MikroTik',
-    technologies: ['MikroTik RouterOS', 'DHCP Server', 'NAT', 'DNS'],
-    objective:
-      'Contoh tujuan proyek: Mendokumentasikan langkah konfigurasi router dasar agar klien lokal memperoleh IP otomatis dan akses jaringan.',
-    implementationOverview: [
-      'Menentukan alamat IP statis/DHCP client pada interface WAN serta alamat gateway untuk interface LAN.',
-      'Menyiapkan DHCP Server dan IP pool untuk mendistribusikan alamat IP kepada perangkat klien secara otomatis.',
-      'Menerapkan aturan firewall NAT masquerade dan menguji resolusi DNS dari sisi klien.',
-    ],
-    learningOutcomes: [
-      'Memahami alur distribusi alamat IP melalui protokol DHCP.',
-      'Mengenal peran Network Address Translation (NAT) pada jaringan lokal.',
-      'Terbiasa melakukan verifikasi dasar menggunakan terminal dan ping test.',
-    ],
-    status: 'In Progress',
-    dateLabel: 'Sample Template',
-    isSamplePlaceholder: true,
+    status: 'In Development',
+    dateLabel: 'In Development',
   },
 ];

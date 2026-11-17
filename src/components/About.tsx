@@ -12,7 +12,7 @@ export function About() {
               About Me
             </h2>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-[#777777]">
-              Profil singkat mengenai latar belakang pendidikan kejuruan dan fokus pembelajaran di bidang teknologi informasi.
+              Siswa kelas XI Teknik Komputer dan Jaringan (TKJ) di SMK Madinatulquran dengan minat karier di bidang Cybersecurity dan System Administration.
             </p>
           </div>
 
@@ -26,7 +26,16 @@ export function About() {
               ))}
             </div>
 
-            <div className="mt-10 grid grid-cols-1 border-t border-[#E2E0D8] pt-8 sm:grid-cols-3 sm:gap-8 gap-6">
+            <div className="mt-8 border-t border-[#E2E0D8] pt-6">
+              <p className="text-xs text-[#777777]">
+                <span className="font-mono-tech text-[#425D78]">Career Interests:</span>{' '}
+                <span className="font-medium text-[#171717]">
+                  {profile.careerInterests.join(' · ')}
+                </span>
+              </p>
+            </div>
+
+            <div className="mt-8 grid grid-cols-1 border-t border-[#E2E0D8] pt-8 sm:grid-cols-3 sm:gap-8 gap-6">
               {profile.aboutFocusAreas.map((area) => (
                 <div key={area.label}>
                   <h3 className="font-display text-sm font-semibold text-[#171717]">

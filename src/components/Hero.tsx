@@ -10,9 +10,9 @@ interface HeroProps {
 
 const INDEX_LINKS = [
   { num: '01', label: 'Certifications', target: 'certifications' },
-  { num: '02', label: 'Projects & Lab', target: 'projects' },
+  { num: '02', label: 'Projects', target: 'projects' },
   { num: '03', label: 'Technical Skills', target: 'skills' },
-  { num: '04', label: 'Learning Journey', target: 'journey' },
+  { num: '04', label: 'Education', target: 'journey' },
 ] as const;
 
 export function Hero({ onExploreWork, onContact, onJumpTo }: HeroProps) {
@@ -49,6 +49,13 @@ export function Hero({ onExploreWork, onContact, onJumpTo }: HeroProps) {
 
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#777777]">
                 {profile.shortIntro}
+              </p>
+
+              <p className="mt-4 text-xs text-[#626262]">
+                <span className="font-mono-tech text-[#425D78]">Career Interests:</span>{' '}
+                <span className="font-medium text-[#171717]">
+                  {profile.careerInterests.join(' · ')}
+                </span>
               </p>
             </div>
 
@@ -99,15 +106,15 @@ export function Hero({ onExploreWork, onContact, onJumpTo }: HeroProps) {
                     {profile.name}
                   </p>
                   <p className="mt-1 text-xs leading-relaxed text-[#777777]">
-                    Placeholder foto profil netral. Dapat diganti melalui{' '}
+                    Belum ada foto profil yang ditambahkan. Slot dapat diisi di{' '}
                     <span className="font-mono-tech text-[#425D78]">public/images/</span>.
                   </p>
                 </div>
               )}
 
               <div className="flex items-center justify-between border-t border-[#E2E0D8] pt-3 text-xs text-[#626262]">
-                <span>{profile.location}</span>
-                <span className="font-mono-tech text-[#425D78]">TKJ</span>
+                <span>SMK Madinatulquran</span>
+                <span className="font-mono-tech text-[#425D78]">XI TKJ</span>
               </div>
             </div>
           </div>

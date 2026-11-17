@@ -1,62 +1,62 @@
 import type { ProfileData } from './types';
 
 /**
- * Data profil pribadi terpusat.
- * Ubah informasi di file ini untuk memperbarui identitas, bagian About Me,
- * foto profil, maupun detail kontak pada website.
+ * Data profil pribadi terpusat untuk Royyan Abdurrahman.
+ * Ubah informasi pada berkas ini untuk memperbarui profil, narasi About Me,
+ * foto profil, maupun tautan kontak.
  */
 export const profile: ProfileData = {
   name: 'Royyan Abdurrahman',
-  title: 'TKJ Student | IT Enthusiast',
+  title: 'IT Enthusiast & TKJ Student',
   location: 'Indonesia',
+  careerInterests: ['Cybersecurity', 'System Administration'],
   shortIntro:
-    'Pelajar jurusan Teknik Komputer dan Jaringan yang memiliki ketertarikan pada jaringan komputer, infrastruktur IT, administrasi sistem, dan teknologi.',
+    'Siswa kelas XI jurusan Teknik Komputer dan Jaringan (TKJ) di SMK Madinatulquran yang tertarik pada teknologi informasi, jaringan komputer, dan keamanan siber.',
   // Ganti null menjadi '/images/profile.jpg' setelah menaruh foto asli di public/images/profile.jpg
   photoUrl: null,
   photoAlt: 'Foto profil Royyan Abdurrahman',
   heroHeading: 'Building My Journey in Technology.',
   heroSupportText:
-    'Exploring computer networking, IT infrastructure, and digital technology through continuous learning and practical projects.',
+    'Exploring computer networking, cybersecurity, and system administration through continuous learning and AI-assisted projects.',
   aboutParagraphs: [
-    'Saya adalah pelajar Sekolah Menengah Kejuruan (SMK) pada program keahlian Teknik Komputer dan Jaringan (TKJ) di Indonesia. Ketertarikan saya berfokus pada bagaimana perangkat komputer, protokol jaringan, dan layanan server saling terhubung membentuk infrastruktur digital yang andal.',
-    'Saat ini saya terus membangun fondasi pemahaman melalui pembelajaran di kelas, praktik laboratorium, simulasi jaringan, serta eksplorasi mandiri seputar routing, switching, konfigurasi perangkat jaringan, sistem operasi, dan dasar-dasar administrasi server.',
-    'Portofolio ini menjadi catatan terbuka atas perjalanan belajar saya—mendokumentasikan proyek praktik, latihan simulasi, serta pencapaian sertifikasi secara jujur dan bertahap demi mengasah keterampilan teknis yang siap diterapkan di dunia nyata.',
+    'Saya merupakan siswa kelas XI jurusan Teknik Komputer dan Jaringan (TKJ) di SMK Madinatulquran. Saya memiliki ketertarikan pada teknologi informasi, jaringan komputer, dan keamanan siber.',
+    'Saya senang mempelajari hal baru, mengeksplorasi teknologi, serta mengembangkan proyek dengan bantuan AI. Ke depannya, saya ingin berkarier di bidang Cybersecurity dan System Administration.',
   ],
   aboutFocusAreas: [
     {
-      label: 'Jaringan Komputer',
-      detail: 'Mempelajari pengalamatan IP, subnetting, DHCP, DNS, serta alur komunikasi data.',
+      label: 'Jaringan & Sistem',
+      detail: 'Mempelajari dasar jaringan komputer menggunakan MikroTik, Cisco Packet Tracer, dan GNS3.',
     },
     {
-      label: 'Infrastruktur & Sistem',
-      detail: 'Membiasakan diri dengan instalasi sistem operasi, perangkat keras komputer, dan dasar server.',
+      label: 'Cybersecurity',
+      detail: 'Membangun pemahaman awal keamanan siber untuk mendukung cita-cita di bidang Cybersecurity & System Administration.',
     },
     {
-      label: 'Praktik & Dokumentasi',
-      detail: 'Menguji topologi melalui simulator jaringan dan mencatat proses troubleshooting secara terstruktur.',
+      label: 'Pengembangan Berbantuan AI',
+      detail: 'Merancang konsep, menyusun kebutuhan fitur, mengarahkan AI melalui prompting, serta menguji hasil aplikasi.',
     },
   ],
   contacts: [
     {
       label: 'Email',
-      value: 'email-anda@contoh.com',
-      href: undefined,
-      isPlaceholder: true,
-      helperText: 'Placeholder — ganti dengan alamat email aktif Anda di src/data/profile.ts',
+      value: 'abdurrahmanroyyan8@gmail.com',
+      href: 'mailto:abdurrahmanroyyan8@gmail.com',
+      isPlaceholder: false,
+      helperText: 'Klik alamat email untuk mengirim pesan langsung melalui aplikasi email Anda.',
     },
     {
       label: 'GitHub',
-      value: 'github.com/username-anda',
-      href: undefined,
-      isPlaceholder: true,
-      helperText: 'Placeholder — ganti dengan tautan profil GitHub Anda di src/data/profile.ts',
+      value: 'https://github.com/royyan-to',
+      href: 'https://github.com/royyan-to',
+      isPlaceholder: false,
+      helperText: 'Profil GitHub dan repositori proyek yang sedang dikembangkan.',
     },
     {
       label: 'LinkedIn',
-      value: 'linkedin.com/in/username-anda',
-      href: undefined,
-      isPlaceholder: true,
-      helperText: 'Placeholder — ganti dengan tautan profil LinkedIn Anda di src/data/profile.ts',
+      value: 'https://www.linkedin.com/in/royyan-abdurrahman-571a12384/',
+      href: 'https://www.linkedin.com/in/royyan-abdurrahman-571a12384/',
+      isPlaceholder: false,
+      helperText: 'Profil LinkedIn resmi untuk terhubung secara profesional.',
     },
   ],
 };

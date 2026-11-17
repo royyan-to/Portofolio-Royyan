@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowLeft, Network } from 'lucide-react';
+import { ArrowLeft, ExternalLink, ImageOff } from 'lucide-react';
 import type { ProjectItem } from '../data/types';
 
 interface ProjectDetailPageProps {
@@ -47,12 +47,6 @@ export function ProjectDetailPage({ project, onBackToProjects }: ProjectDetailPa
         <span>Kembali ke Projects</span>
       </button>
 
-      {project.isSamplePlaceholder && (
-        <div className="mt-8 border border-dashed border-[#425D78] bg-[#F0EFE9] px-5 py-4 text-sm text-[#171717]">
-          <span className="font-semibold">Sample Placeholder:</span> Halaman ini memperlihatkan struktur dokumentasi detail proyek. Data contoh di bawah bukan merupakan proyek nyata yang diklaim telah diselesaikan.
-        </div>
-      )}
-
       {/* Header */}
       <header className="mt-8 border-b border-[#E2E0D8] pb-8">
         <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs text-[#626262]">
@@ -61,14 +55,6 @@ export function ProjectDetailPage({ project, onBackToProjects }: ProjectDetailPa
             ·
           </span>
           <span>Status: {project.status}</span>
-          {project.dateLabel && (
-            <>
-              <span aria-hidden="true" className="text-[#C8C5BA]">
-                ·
-              </span>
-              <span className="font-mono-tech">{project.dateLabel}</span>
-            </>
-          )}
         </div>
 
         <h1 className="mt-4 font-display text-3xl font-semibold leading-tight tracking-tight text-[#171717] md:text-4xl">
@@ -78,9 +64,23 @@ export function ProjectDetailPage({ project, onBackToProjects }: ProjectDetailPa
         <p className="mt-4 max-w-3xl text-base leading-relaxed text-[#626262]">
           {project.shortDescription}
         </p>
+
+        {project.githubUrl && (
+          <div className="mt-6">
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[44px] items-center gap-2 bg-[#425D78] px-5 py-2.5 text-xs font-medium text-white transition-colors hover:bg-[#334A60]"
+            >
+              <span>Lihat Repository di GitHub</span>
+              <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+            </a>
+          </div>
+        )}
       </header>
 
-      {/* Media / Topology Visual */}
+      {/* Media / Screenshot Slot */}
       <div className="mt-10 border border-[#E2E0D8] bg-white p-3 md:p-4">
         {hasImage ? (
           <img
@@ -91,16 +91,16 @@ export function ProjectDetailPage({ project, onBackToProjects }: ProjectDetailPa
             className="max-h-[480px] w-full object-contain bg-[#F7F6F2]"
           />
         ) : (
-          <div className="flex min-h-[240px] flex-col items-center justify-center bg-[#F0EFE9] px-6 py-12 text-center">
-            <Network className="h-9 w-9 text-[#425D78] stroke-[1.5]" aria-hidden="true" />
+          <div className="flex min-h-[220px] flex-col items-center justify-center bg-[#F0EFE9] px-6 py-12 text-center">
+            <ImageOff className="h-9 w-9 text-[#425D78] stroke-[1.5]" aria-hidden="true" />
             <p className="mt-3 font-display text-sm font-medium text-[#171717]">
-              Area Screenshot atau Diagram Topologi
+              Belum ada tangkapan layar aplikasi untuk proyek ini
             </p>
             <p className="mt-1 max-w-md text-xs leading-relaxed text-[#626262]">
-              Simpan gambar topologi atau tangkapan layar konfigurasi di{' '}
-              <span className="font-mono-tech">public/projects/</span> lalu tautkan melalui properti{' '}
+              Simpan gambar/screenshot proyek di{' '}
+              <span className="font-mono-tech">public/projects/</span> lalu tambahkan properti{' '}
               <span className="font-mono-tech">image</span> pada{' '}
-              <span className="font-mono-tech">src/data/projects.ts</span>.
+              <span className="font-mono-tech">src/data/projects.ts</span> saat sudah tersedia.
             </p>
           </div>
         )}
@@ -114,7 +114,7 @@ export function ProjectDetailPage({ project, onBackToProjects }: ProjectDetailPa
               id="project-objective-heading"
               className="font-display text-lg font-semibold text-[#171717]"
             >
-              Masalah &amp; Tujuan
+              Tujuan Proyek
             </h2>
             <p className="mt-3 text-base leading-relaxed text-[#4A4A4A]">
               {project.objective}
@@ -129,11 +129,14 @@ export function ProjectDetailPage({ project, onBackToProjects }: ProjectDetailPa
               id="project-implementation-heading"
               className="font-display text-lg font-semibold text-[#171717]"
             >
-              Ringkasan Implementasi
+              {project.contributionHeading ?? 'Ringkasan Implementasi'}
             </h2>
             <ol className="mt-4 space-y-3">
               {project.implementationOverview.map((step, index) => (
-                <li key={index} className="flex items-start gap-4 text-sm leading-relaxed text-[#4A4A4A] md:text-base">
+                <li
+                  key={index}
+                  className="flex items-start gap-4 text-sm leading-relaxed text-[#4A4A4A] md:text-base"
+                >
                   <span className="font-mono-tech pt-0.5 text-xs text-[#425D78] shrink-0">
                     {String(index + 1).padStart(2, '0')}
                   </span>
@@ -155,7 +158,10 @@ export function ProjectDetailPage({ project, onBackToProjects }: ProjectDetailPa
             </h2>
             <ul className="mt-4 space-y-2.5">
               {project.learningOutcomes.map((outcome, index) => (
-                <li key={index} className="flex items-start gap-3 text-sm leading-relaxed text-[#4A4A4A] md:text-base">
+                <li
+                  key={index}
+                  className="flex items-start gap-3 text-sm leading-relaxed text-[#4A4A4A] md:text-base"
+                >
                   <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 bg-[#425D78] shrink-0" />
                   <span>{outcome}</span>
                 </li>
@@ -179,8 +185,24 @@ export function ProjectDetailPage({ project, onBackToProjects }: ProjectDetailPa
                 <dt className="text-xs text-[#777777]">Status</dt>
                 <dd className="mt-1 font-medium text-[#171717]">{project.status}</dd>
               </div>
+              {project.githubUrl && (
+                <div className="py-3">
+                  <dt className="text-xs text-[#777777]">Repository</dt>
+                  <dd className="mt-1">
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 font-mono-tech text-xs text-[#425D78] hover:text-[#171717] break-all"
+                    >
+                      <span>royyan-to/FOR-UMKM</span>
+                      <ExternalLink className="h-3 w-3 shrink-0" aria-hidden="true" />
+                    </a>
+                  </dd>
+                </div>
+              )}
               <div className="py-3">
-                <dt className="text-xs text-[#777777]">Teknologi &amp; Perangkat</dt>
+                <dt className="text-xs text-[#777777]">Alat &amp; Pendekatan</dt>
                 <dd className="mt-2 space-y-1 font-mono-tech text-xs text-[#425D78]">
                   {project.technologies.map((tech) => (
                     <div key={tech}>{tech}</div>

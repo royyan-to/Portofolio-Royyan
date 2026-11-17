@@ -1,8 +1,9 @@
 export type CertificateCategory =
   | 'Networking'
+  | 'Cybersecurity'
+  | 'IT & Technology'
   | 'Computer & Hardware'
   | 'Server Administration'
-  | 'IT & Technology'
   | 'Other Achievements';
 
 export interface CertificateItem {
@@ -11,13 +12,15 @@ export interface CertificateItem {
   organization: string;
   issueDate: string;
   category: CertificateCategory;
-  image: string;
+  image?: string;
+  pdfUrl?: string;
   description?: string;
   credentialUrl?: string;
   isSample?: boolean;
 }
 
 export type ProjectCategory =
+  | 'AI-Assisted Development'
   | 'Network Configuration'
   | 'MikroTik'
   | 'GNS3'
@@ -26,7 +29,11 @@ export type ProjectCategory =
   | 'Computer Hardware'
   | 'Troubleshooting';
 
-export type ProjectStatus = 'Completed' | 'In Progress' | 'Experimental';
+export type ProjectStatus =
+  | 'In Development'
+  | 'Completed'
+  | 'In Progress'
+  | 'Experimental';
 
 export interface ProjectItem {
   slug: string;
@@ -35,7 +42,9 @@ export interface ProjectItem {
   category: ProjectCategory;
   technologies: string[];
   image?: string;
+  githubUrl?: string;
   objective: string;
+  contributionHeading?: string;
   implementationOverview: string[];
   learningOutcomes: string[];
   status: ProjectStatus;
@@ -43,7 +52,7 @@ export interface ProjectItem {
   isSamplePlaceholder?: boolean;
 }
 
-export type SkillStatus = 'Learning' | 'Practiced' | 'Familiar';
+export type SkillStatus = 'Beginner / Basic' | 'Learning' | 'Practiced' | 'Familiar';
 
 export interface SkillEntry {
   name: string;
@@ -78,6 +87,7 @@ export interface ProfileData {
   name: string;
   title: string;
   location: string;
+  careerInterests: string[];
   shortIntro: string;
   photoUrl: string | null;
   photoAlt: string;

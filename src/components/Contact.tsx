@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowUpRight, Check, Copy } from 'lucide-react';
+import { ArrowUpRight, Check, Copy, Mail } from 'lucide-react';
 import { profile } from '../data/profile';
 
 export function Contact() {
@@ -28,11 +28,7 @@ export function Contact() {
               Let&apos;s Connect.
             </h2>
             <p className="mt-4 max-w-md text-base leading-relaxed text-[#626262]">
-              Terbuka untuk berdiskusi mengenai jaringan komputer, praktik laboratorium, peluang belajar, maupun kolaborasi proyek teknologi informasi.
-            </p>
-            <p className="mt-3 text-xs leading-relaxed text-[#777777]">
-              Detail kontak di samping dapat diperbarui kapan saja melalui{' '}
-              <span className="font-mono-tech text-[#171717]">src/data/profile.ts</span>.
+              Terbuka untuk terhubung, bertukar pengalaman belajar seputar jaringan komputer, keamanan siber, maupun proyek teknologi informasi.
             </p>
           </div>
 
@@ -41,6 +37,9 @@ export function Contact() {
             <div className="divide-y divide-[#E2E0D8] border-t border-b border-[#E2E0D8] bg-white">
               {profile.contacts.map((contact) => {
                 const isCopied = copiedLabel === contact.label;
+                const isMailto = Boolean(contact.href?.startsWith('mailto:'));
+                const isExternal = Boolean(contact.href?.startsWith('http'));
+
                 return (
                   <div
                     key={contact.label}
@@ -51,23 +50,21 @@ export function Contact() {
                         <span className="font-mono-tech uppercase tracking-wider">
                           {contact.label}
                         </span>
-                        {contact.isPlaceholder && (
-                          <>
-                            <span aria-hidden="true">·</span>
-                            <span className="font-mono-tech text-[#425D78]">Placeholder</span>
-                          </>
-                        )}
                       </div>
 
                       {contact.href && !contact.isPlaceholder ? (
                         <a
                           href={contact.href}
-                          target={contact.href.startsWith('http') ? '_blank' : undefined}
-                          rel={contact.href.startsWith('http') ? 'noreferrer noopener' : undefined}
+                          target={isExternal ? '_blank' : undefined}
+                          rel={isExternal ? 'noopener noreferrer' : undefined}
                           className="mt-1 inline-flex items-center gap-1.5 font-display text-base font-medium text-[#171717] transition-colors hover:text-[#425D78] break-all"
                         >
                           <span>{contact.value}</span>
-                          <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+                          {isMailto ? (
+                            <Mail className="h-4 w-4 shrink-0 text-[#425D78]" aria-hidden="true" />
+                          ) : (
+                            <ArrowUpRight className="h-4 w-4 shrink-0 text-[#425D78]" aria-hidden="true" />
+                          )}
                         </a>
                       ) : (
                         <p className="mt-1 font-display text-base font-medium text-[#171717] break-all">

@@ -1,18 +1,33 @@
 import type { JourneyItem } from './types';
 
 /**
- * Linimasa perkembangan belajar (Learning Journey).
- * Sengaja dimulai dalam kondisi kosong agar tidak ada tanggal, institusi,
- * atau pencapaian yang dibuat-buat.
- *
- * Contoh format entri saat ingin menambahkan catatan perjalanan belajar:
- * {
- *   id: 'journey-01',
- *   period: '2025 — Sekarang',
- *   title: 'Siswa Teknik Komputer dan Jaringan (TKJ)',
- *   institutionOrContext: 'Nama Sekolah (Opsional)',
- *   type: 'Education',
- *   description: 'Mempelajari dasar jaringan komputer, perangkat keras, dan administrasi sistem.',
- * }
+ * Riwayat pendidikan dan perjalanan belajar Royyan Abdurrahman.
+ * Hanya berisi data riwayat pendidikan aktual tanpa tanggal atau klaim buatan.
  */
-export const journeyItems: JourneyItem[] = [];
+export const journeyItems: JourneyItem[] = [
+  {
+    id: 'edu-smk-madinatulquran',
+    period: '2025–Present',
+    title: 'Teknik Komputer dan Jaringan (TKJ) — Grade XI',
+    institutionOrContext: 'SMK Madinatulquran',
+    type: 'Education',
+    description:
+      'Siswa kelas XI program keahlian Teknik Komputer dan Jaringan (TKJ), mendalami jaringan komputer, keamanan siber, administrasi sistem dasar, dan proyek pengembangan berbantuan AI.',
+  },
+  {
+    id: 'edu-smpit-al-izzah',
+    period: 'Graduated 2025',
+    title: 'Sekolah Menengah Pertama',
+    institutionOrContext: 'SMPIT Al-Izzah',
+    type: 'Education',
+    description: 'Menyelesaikan pendidikan tingkat menengah pertama pada tahun 2025.',
+  },
+  {
+    id: 'edu-sdit-as-sabiquun',
+    period: 'Primary Education',
+    title: 'Sekolah Dasar',
+    institutionOrContext: 'SDIT As Sabiquun',
+    type: 'Education',
+    description: 'Menyelesaikan pendidikan tingkat sekolah dasar di SDIT As Sabiquun.',
+  },
+];

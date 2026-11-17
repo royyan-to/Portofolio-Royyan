@@ -1,97 +1,82 @@
 import type { SkillGroup } from './types';
 
 /**
- * Daftar keterampilan teknis yang sedang dipelajari dan dipraktikkan.
- * Label status menggunakan: 'Learning' | 'Practiced' | 'Familiar'
- * dan dapat diubah kapan saja sesuai perkembangan belajar.
+ * Daftar keterampilan teknis terpusat.
+ * Seluruh entri saat ini berada pada level 'Beginner / Basic' secara jujur
+ * tanpa persentase atau progress bar buatan.
  */
 export const skillGroups: SkillGroup[] = [
   {
-    category: 'Networking',
-    subtitle: 'Dasar pengalamatan, perutean, dan layanan inti jaringan komputer.',
+    category: 'Web Development',
+    subtitle: 'Dasar pembuatan struktur halaman, tata letak, dan interaktivitas web.',
     skills: [
       {
-        name: 'IP Addressing',
-        status: 'Practiced',
-        focusNote: 'Pemahaman kelas alamat IPv4, network/host ID, dan konfigurasi IP statis.',
+        name: 'HTML',
+        status: 'Beginner / Basic',
+        focusNote: 'Struktur dokumen web semantik dan elemen dasar halaman.',
       },
       {
-        name: 'Subnetting',
-        status: 'Practiced',
-        focusNote: 'Perhitungan subnet mask, CIDR, dan pembagian blok alamat jaringan.',
+        name: 'CSS',
+        status: 'Beginner / Basic',
+        focusNote: 'Pengaturan tampilan, warna, tipografi, dan tata letak responsif dasar.',
       },
       {
-        name: 'Routing and Switching',
-        status: 'Learning',
-        focusNote: 'Konsep dasar switching Layer 2, static routing, dan alur paket data.',
-      },
-      {
-        name: 'DHCP',
-        status: 'Practiced',
-        focusNote: 'Pemahaman proses DORA dan pengaturan distribusi IP otomatis.',
-      },
-      {
-        name: 'DNS',
-        status: 'Learning',
-        focusNote: 'Cara kerja resolusi nama domain ke alamat IP pada jaringan lokal.',
+        name: 'JavaScript',
+        status: 'Beginner / Basic',
+        focusNote: 'Dasar logika pemrograman dan interaksi sederhana pada halaman web.',
       },
     ],
   },
   {
-    category: 'Network Tools',
-    subtitle: 'Perangkat lunak simulasi dan konfigurasi perangkat jaringan.',
+    category: 'Networking',
+    subtitle: 'Simulasi jaringan komputer dan pengenalan konfigurasi perangkat jaringan.',
     skills: [
       {
         name: 'MikroTik',
-        status: 'Learning',
-        focusNote: 'Pengenalan Winbox, konfigurasi dasar interface, DHCP, dan NAT.',
-      },
-      {
-        name: 'GNS3',
-        status: 'Learning',
-        focusNote: 'Eksplorasi pembuatan topologi jaringan virtual untuk latihan laboratorium.',
+        status: 'Beginner / Basic',
+        focusNote: 'Pengenalan konfigurasi dasar router MikroTik dan pengaturan jaringan lokal.',
       },
       {
         name: 'Cisco Packet Tracer',
-        status: 'Practiced',
-        focusNote: 'Simulasi topologi switch, router, pengalamatan IP, dan pengujian konektivitas.',
+        status: 'Beginner / Basic',
+        focusNote: 'Pembuatan simulasi topologi jaringan, pengalamatan IP, dan pengujian koneksi.',
+      },
+      {
+        name: 'GNS3',
+        status: 'Beginner / Basic',
+        focusNote: 'Eksplorasi simulasi topologi jaringan virtual untuk latihan laboratorium.',
       },
     ],
   },
   {
-    category: 'Computer Systems',
-    subtitle: 'Perangkat keras komputer, sistem operasi, dan pemecahan masalah.',
+    category: 'Version Control',
+    subtitle: 'Pengelolaan riwayat perubahan proyek dan penyimpanan kode di repositori.',
     skills: [
       {
-        name: 'Computer Hardware',
-        status: 'Familiar',
-        focusNote: 'Pengenalan komponen PC, perakitan dasar, dan pemeriksaan koneksi perangkat.',
+        name: 'Git',
+        status: 'Beginner / Basic',
+        focusNote: 'Perintah dasar pencatatan perubahan dan pengelolaan versi proyek.',
       },
       {
-        name: 'Operating System Installation',
-        status: 'Practiced',
-        focusNote: 'Instalasi sistem operasi desktop dan pengaturan partisi penyimpanan dasar.',
-      },
-      {
-        name: 'Basic Troubleshooting',
-        status: 'Practiced',
-        focusNote: 'Identifikasi masalah koneksi jaringan dasar dan pemeriksaan kondisi sistem.',
+        name: 'GitHub',
+        status: 'Beginner / Basic',
+        focusNote: 'Pengelolaan repositori daring untuk dokumentasi dan penyimpanan proyek.',
       },
     ],
   },
   {
-    category: 'Server Administration',
-    subtitle: 'Fondasi sistem operasi server dan pengelolaan layanan berbasis CLI.',
+    category: 'AI-Assisted Development',
+    subtitle: 'Pemanfaatan alat AI untuk merancang, mengarahkan, dan mengevaluasi proyek.',
     skills: [
       {
-        name: 'Linux Fundamentals',
-        status: 'Learning',
-        focusNote: 'Perintah dasar terminal, manajemen file, izin akses, dan jaringan di Linux.',
+        name: 'Google AI Studio',
+        status: 'Beginner / Basic',
+        focusNote: 'Penggunaan Google AI Studio untuk eksplorasi ide dan pengembangan aplikasi berbantuan AI.',
       },
       {
-        name: 'Windows Server Fundamentals',
-        status: 'Learning',
-        focusNote: 'Pengenalan antarmuka server, manajemen pengguna dasar, dan peran layanan.',
+        name: 'AI Prompting',
+        status: 'Beginner / Basic',
+        focusNote: 'Penyusunan instruksi terstruktur, evaluasi hasil keluaran AI, dan iterasi perbaikan.',
       },
     ],
   },

@@ -10,10 +10,10 @@ export function LearningJourney() {
           <div className="lg:col-span-4">
             <span className="font-mono-tech text-xs text-[#425D78]">05</span>
             <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-[#171717] md:text-4xl">
-              Learning Journey
+              Education &amp; Learning Journey
             </h2>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-[#626262]">
-              Linimasa kronologis pendidikan, pelatihan, kursus, dan tonggak belajar yang dicatat apa adanya.
+              Riwayat pendidikan formal dari tingkat dasar hingga jurusan Teknik Komputer dan Jaringan (TKJ) saat ini.
             </p>
           </div>
 
@@ -35,11 +35,11 @@ export function LearningJourney() {
 
                     <div className="sm:col-span-8">
                       <h3 className="font-display text-base font-semibold text-[#171717]">
-                        {item.title}
+                        {item.institutionOrContext ?? item.title}
                       </h3>
                       {item.institutionOrContext && (
                         <p className="mt-0.5 text-sm font-medium text-[#626262]">
-                          {item.institutionOrContext}
+                          {item.title}
                         </p>
                       )}
                       <p className="mt-2 text-sm leading-relaxed text-[#626262]">
@@ -55,10 +55,10 @@ export function LearningJourney() {
                   <Clock className="h-5 w-5 stroke-[1.5]" aria-hidden="true" />
                 </div>
                 <h3 className="mt-5 font-display text-xl font-semibold text-[#171717]">
-                  Linimasa perjalanan belajar belum diisi
+                  Belum ada catatan pendidikan yang ditambahkan
                 </h3>
                 <p className="mt-2.5 max-w-xl text-sm leading-relaxed text-[#626262]">
-                  Bagian ini dimulai dalam kondisi kosong tanpa tanggal, institusi, atau pencapaian buatan. Setiap riwayat pendidikan, pelatihan, dan milestone belajar dapat ditambahkan secara kronologis melalui berkas{' '}
+                  Tambahkan riwayat pendidikan atau pelatihan Anda melalui berkas{' '}
                   <span className="font-mono-tech text-[#171717]">src/data/journey.ts</span>.
                 </p>
               </div>

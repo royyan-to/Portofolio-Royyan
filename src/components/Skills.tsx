@@ -1,19 +1,15 @@
 import { useState } from 'react';
 import { skillGroups } from '../data/skills';
-import type { SkillStatus } from '../data/types';
-
-type StatusFilter = 'All' | SkillStatus;
-
-const STATUS_DESCRIPTIONS: Record<SkillStatus, string> = {
-  Learning: 'Sedang dipelajari secara aktif melalui materi & latihan dasar.',
-  Practiced: 'Sudah dipraktikkan langsung di laboratorium atau simulasi.',
-  Familiar: 'Memahami konsep dasar dan terbiasa menggunakannya dalam tugas.',
-};
 
 export function Skills() {
-  const [statusFilter, setStatusFilter] = useState<StatusFilter>('All');
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
-  const statusTabs: StatusFilter[] = ['All', 'Practiced', 'Familiar', 'Learning'];
+  const categoryTabs = ['All', ...skillGroups.map((group) => group.category)];
+
+  const visibleGroups =
+    selectedCategory === 'All'
+      ? skillGroups
+      : skillGroups.filter((group) => group.category === selectedCategory);
 
   return (
     <section id="skills" className="border-b border-[#E2E0D8]">
@@ -26,118 +22,93 @@ export function Skills() {
               Technical Skills
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#626262] md:text-base">
-              Ringkasan topik teknis yang sedang dipelajari dan dipraktikkan. Setiap entri merepresentasikan tingkat pemahaman saat ini—bukan klaim penguasaan penuh—dan dapat diperbarui di{' '}
-              <span className="font-mono-tech text-[#171717]">src/data/skills.ts</span>.
+              Teknologi, alat, dan topik dasar yang sedang dipelajari dan dipraktikkan pada tingkat{' '}
+              <span className="font-medium text-[#171717]">Beginner / Basic</span> tanpa persentase atau klaim penguasaan berlebihan.
             </p>
           </div>
 
-          {/* Interactive Status Filter */}
-          <div
-            role="tablist"
-            aria-label="Filter status pemahaman keterampilan"
-            className="flex flex-wrap items-center gap-1.5 shrink-0"
-          >
-            {statusTabs.map((status) => {
-              const isActive = statusFilter === status;
-              return (
-                <button
-                  key={status}
-                  role="tab"
-                  type="button"
-                  aria-selected={isActive}
-                  onClick={() => setStatusFilter(status)}
-                  className={`min-h-[36px] border px-3.5 py-1.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
-                    isActive
-                      ? 'border-[#171717] bg-[#171717] text-[#F7F6F2]'
-                      : 'border-[#E2E0D8] bg-white text-[#626262] hover:border-[#171717] hover:text-[#171717]'
-                  }`}
-                >
-                  {status}
-                </button>
-              );
-            })}
+          <div className="font-mono-tech text-xs text-[#425D78] shrink-0">
+            Level saat ini: Beginner / Basic
           </div>
         </div>
 
-        {/* Status Legend (Unboxed typographic row) */}
-        <div className="mt-6 grid grid-cols-1 gap-4 border-b border-[#E2E0D8] pb-6 text-xs text-[#626262] md:grid-cols-3">
-          {(['Practiced', 'Familiar', 'Learning'] as const).map((status) => (
-            <div key={status} className="flex items-baseline gap-2.5">
-              <span className="font-mono-tech font-medium text-[#425D78] shrink-0">
-                {status}:
-              </span>
-              <span>{STATUS_DESCRIPTIONS[status]}</span>
-            </div>
-          ))}
+        {/* Category Filter Tabs */}
+        <div
+          role="tablist"
+          aria-label="Filter kategori keterampilan teknis"
+          className="mt-8 flex flex-wrap items-center gap-2"
+        >
+          {categoryTabs.map((category) => {
+            const isActive = selectedCategory === category;
+            return (
+              <button
+                key={category}
+                role="tab"
+                type="button"
+                aria-selected={isActive}
+                onClick={() => setSelectedCategory(category)}
+                className={`min-h-[40px] border px-4 py-2 text-xs font-medium transition-colors duration-150 whitespace-nowrap shrink-0 cursor-pointer ${
+                  isActive
+                    ? 'border-[#171717] bg-[#171717] text-[#F7F6F2]'
+                    : 'border-[#E2E0D8] bg-white text-[#626262] hover:border-[#171717] hover:text-[#171717]'
+                }`}
+              >
+                {category}
+              </button>
+            );
+          })}
         </div>
 
         {/* 2x2 Swiss Architectural Skills Grid */}
-        <div className="mt-10 grid grid-cols-1 border-t border-l border-[#E2E0D8] md:grid-cols-2">
-          {skillGroups.map((group, groupIndex) => {
-            const visibleSkills =
-              statusFilter === 'All'
-                ? group.skills
-                : group.skills.filter((s) => s.status === statusFilter);
-
-            return (
-              <div
-                key={group.category}
-                className="flex flex-col justify-between border-r border-b border-[#E2E0D8] bg-white p-6 md:p-8"
-              >
-                <div>
-                  <div className="flex items-baseline justify-between gap-4 border-b border-[#E2E0D8] pb-4">
-                    <div>
-                      <span className="font-mono-tech text-xs text-[#777777]">
-                        {String(groupIndex + 1).padStart(2, '0')}
-                      </span>
-                      <h3 className="mt-1 font-display text-xl font-semibold text-[#171717]">
-                        {group.category}
-                      </h3>
-                    </div>
-                    <span className="font-mono-tech text-xs text-[#777777] shrink-0">
-                      {visibleSkills.length} item
+        <div
+          className={`mt-10 grid grid-cols-1 border-t border-l border-[#E2E0D8] ${
+            visibleGroups.length > 1 ? 'md:grid-cols-2' : 'md:grid-cols-1'
+          }`}
+        >
+          {visibleGroups.map((group, groupIndex) => (
+            <div
+              key={group.category}
+              className="flex flex-col justify-between border-r border-b border-[#E2E0D8] bg-white p-6 md:p-8"
+            >
+              <div>
+                <div className="flex items-baseline justify-between gap-4 border-b border-[#E2E0D8] pb-4">
+                  <div>
+                    <span className="font-mono-tech text-xs text-[#777777]">
+                      {String(groupIndex + 1).padStart(2, '0')}
                     </span>
+                    <h3 className="mt-1 font-display text-xl font-semibold text-[#171717]">
+                      {group.category}
+                    </h3>
                   </div>
-
-                  <p className="mt-3 text-sm text-[#626262]">{group.subtitle}</p>
-
-                  {visibleSkills.length > 0 ? (
-                    <ul className="mt-6 divide-y divide-[#E2E0D8]">
-                      {visibleSkills.map((skill) => (
-                        <li key={skill.name} className="py-3.5 first:pt-0 last:pb-0">
-                          <div className="flex items-baseline justify-between gap-4">
-                            <span className="text-sm font-medium text-[#171717]">
-                              {skill.name}
-                            </span>
-                            <span
-                              className={`font-mono-tech text-xs shrink-0 ${
-                                skill.status === 'Practiced'
-                                  ? 'font-medium text-[#425D78]'
-                                  : skill.status === 'Familiar'
-                                    ? 'text-[#171717]'
-                                    : 'text-[#777777]'
-                              }`}
-                            >
-                              {skill.status}
-                            </span>
-                          </div>
-                          {skill.focusNote && (
-                            <p className="mt-1 text-xs leading-relaxed text-[#777777]">
-                              {skill.focusNote}
-                            </p>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="mt-6 text-xs text-[#777777]">
-                      Tidak ada entri dengan status {statusFilter} pada kategori ini.
-                    </p>
-                  )}
+                  <span className="font-mono-tech text-xs text-[#777777] shrink-0">
+                    {group.skills.length} item
+                  </span>
                 </div>
+
+                <p className="mt-3 text-sm text-[#626262]">{group.subtitle}</p>
+
+                <ul className="mt-6 divide-y divide-[#E2E0D8]">
+                  {group.skills.map((skill) => (
+                    <li key={skill.name} className="py-3.5 first:pt-0 last:pb-0">
+                      <div className="flex items-baseline justify-between gap-4">
+                        <span className="text-sm font-medium text-[#171717]">
+                          {skill.name}
+                        </span>
+                        <span className="font-mono-tech text-xs text-[#425D78] shrink-0">
+                          {skill.status}
+                        </span>
+                      </div>
+                      {skill.focusNote && (
+                        <p className="mt-1 text-xs leading-relaxed text-[#777777]">
+                          {skill.focusNote}
+                        </p>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>

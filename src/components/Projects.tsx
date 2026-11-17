@@ -1,10 +1,6 @@
 import { useMemo, useState } from 'react';
 import { FolderOpen } from 'lucide-react';
-import {
-  PROJECT_CATEGORIES,
-  projects,
-  sampleProjectPlaceholders,
-} from '../data/projects';
+import { PROJECT_CATEGORIES, projects } from '../data/projects';
 import type { ProjectCategory } from '../data/types';
 import { ProjectCard } from './ProjectCard';
 
@@ -16,7 +12,6 @@ interface ProjectsProps {
 
 export function Projects({ onSelectProject }: ProjectsProps) {
   const [activeCategory, setActiveCategory] = useState<ProjectFilter>('All');
-  const [showSamplePlaceholders, setShowSamplePlaceholders] = useState(true);
 
   const filterTabs: ProjectFilter[] = ['All', ...PROJECT_CATEGORIES];
 
@@ -25,13 +20,6 @@ export function Projects({ onSelectProject }: ProjectsProps) {
       return projects;
     }
     return projects.filter((item) => item.category === activeCategory);
-  }, [activeCategory]);
-
-  const filteredSamples = useMemo(() => {
-    if (activeCategory === 'All') {
-      return sampleProjectPlaceholders;
-    }
-    return sampleProjectPlaceholders.filter((item) => item.category === activeCategory);
   }, [activeCategory]);
 
   return (
@@ -45,12 +33,12 @@ export function Projects({ onSelectProject }: ProjectsProps) {
               Projects &amp; Practical Work
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#626262] md:text-base">
-              Catatan tugas sekolah, simulasi topologi jaringan, konfigurasi perangkat, serta eksperimen teknis yang terdokumentasi secara jujur.
+              Dokumentasi proyek yang sedang dikembangkan dan praktik teknis dengan keterangan peran serta kontribusi secara jujur.
             </p>
           </div>
 
           <div className="font-mono-tech text-xs text-[#626262] shrink-0">
-            Proyek nyata: {projects.length}
+            Proyek tercatat: {projects.length}
           </div>
         </div>
 
@@ -81,7 +69,7 @@ export function Projects({ onSelectProject }: ProjectsProps) {
           })}
         </div>
 
-        {/* Real Projects Grid or Honest Empty State */}
+        {/* Projects Grid or Honest Empty State */}
         {filteredProjects.length > 0 ? (
           <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
             {filteredProjects.map((project) => (
@@ -100,65 +88,25 @@ export function Projects({ onSelectProject }: ProjectsProps) {
                   <FolderOpen className="h-5 w-5 stroke-[1.5]" aria-hidden="true" />
                 </div>
                 <h3 className="mt-4 font-display text-xl font-semibold text-[#171717]">
-                  {activeCategory === 'All'
-                    ? 'Belum ada proyek nyata yang dipublikasikan'
-                    : `Belum ada proyek pada kategori ${activeCategory}`}
+                  Belum ada proyek pada kategori {activeCategory}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-[#626262]">
-                  Daftar proyek nyata sengaja dimulai dalam keadaan kosong agar tidak ada karya fiktif. Tambahkan dokumentasi tugas atau praktik asli di{' '}
+                  Belum ada proyek yang tercatat untuk kategori{' '}
+                  <span className="font-medium text-[#171717]">{activeCategory}</span>. Anda dapat memilih kategori lain atau menambahkan proyek baru pada{' '}
                   <span className="font-mono-tech text-[#171717]">src/data/projects.ts</span>.
                 </p>
               </div>
 
-              <button
-                type="button"
-                onClick={() => setShowSamplePlaceholders((prev) => !prev)}
-                className="min-h-[44px] border border-[#C8C5BA] bg-white px-5 py-2.5 text-xs font-medium text-[#171717] transition-colors hover:border-[#171717] whitespace-nowrap shrink-0 cursor-pointer"
-              >
-                {showSamplePlaceholders
-                  ? 'Sembunyikan Contoh Placeholder'
-                  : 'Tampilkan Contoh Placeholder'}
-              </button>
+              {activeCategory !== 'All' && (
+                <button
+                  type="button"
+                  onClick={() => setActiveCategory('All')}
+                  className="min-h-[44px] border border-[#C8C5BA] bg-white px-5 py-2.5 text-xs font-medium text-[#171717] transition-colors hover:border-[#171717] whitespace-nowrap shrink-0 cursor-pointer"
+                >
+                  Tampilkan Semua Proyek
+                </button>
+              )}
             </div>
-          </div>
-        )}
-
-        {/* Clearly Marked Sample Placeholders */}
-        {projects.length === 0 && showSamplePlaceholders && (
-          <div className="mt-10 border-t border-[#E2E0D8] pt-8">
-            <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
-              <div>
-                <h3 className="font-display text-base font-semibold text-[#171717]">
-                  Contoh Struktur Proyek (Sample Placeholder)
-                </h3>
-                <p className="mt-1 text-xs text-[#626262]">
-                  Contoh di bawah hanya menunjukkan format kartu dan halaman detail proyek—bukan hasil karya nyata.
-                </p>
-              </div>
-              <span className="font-mono-tech text-xs text-[#425D78]">
-                SAMPLE TEMPLATE
-              </span>
-            </div>
-
-            {filteredSamples.length > 0 ? (
-              <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-                {filteredSamples.map((sample) => (
-                  <ProjectCard
-                    key={sample.slug}
-                    project={sample}
-                    onSelectProject={onSelectProject}
-                  />
-                ))}
-              </div>
-            ) : (
-              <p className="mt-6 border border-dashed border-[#C8C5BA] bg-[#F7F6F2] p-6 text-sm text-[#626262]">
-                Tidak ada contoh placeholder untuk kategori{' '}
-                <span className="font-medium text-[#171717]">{activeCategory}</span>. Pilih kategori{' '}
-                <span className="font-medium text-[#171717]">All</span>,{' '}
-                <span className="font-medium text-[#171717]">Cisco Packet Tracer</span>, atau{' '}
-                <span className="font-medium text-[#171717]">MikroTik</span> untuk melihat contoh struktur proyek.
-              </p>
-            )}
           </div>
         )}
       </div>
