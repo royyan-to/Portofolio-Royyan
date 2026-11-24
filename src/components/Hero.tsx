@@ -127,49 +127,53 @@ export function Hero({ onViewProjects, onContact }: HeroProps) {
             transition={{ duration: 0.5, delay: 0.18, ease: SWISS_EASE }}
             className="lg:col-span-4"
           >
-            <div className="flex h-full flex-col justify-between border border-[#E2E0D8] bg-white p-5 transition-colors duration-300 dark:border-[#282C34] dark:bg-[#1A1D23]">
-              <div className="flex items-center gap-4 border-b border-[#E2E0D8] pb-4 dark:border-[#282C34]">
+            <div className="flex h-full flex-col justify-between border border-[#E2E0D8] bg-white p-4 transition-colors duration-300 dark:border-[#282C34] dark:bg-[#1A1D23]">
+              <div>
                 {showImage ? (
-                  <img
-                    src={profile.photoUrl as string}
-                    alt={profile.photoAlt}
-                    referrerPolicy="no-referrer"
-                    onError={() => setImgError(true)}
-                    className="h-14 w-14 border border-[#E2E0D8] object-cover dark:border-[#282C34] shrink-0"
-                  />
+                  <div className="group mb-4 aspect-[16/10] w-full overflow-hidden border border-[#E2E0D8] bg-[#F0EFE9] dark:border-[#282C34] dark:bg-[#15181D]">
+                    <img
+                      src={profile.photoUrl as string}
+                      alt={profile.photoAlt}
+                      referrerPolicy="no-referrer"
+                      onError={() => setImgError(true)}
+                      className="h-full w-full origin-[35%_52%] scale-[1.2] object-cover object-[40%_54%] transition-transform duration-300 ease-out group-hover:scale-[1.24]"
+                    />
+                  </div>
                 ) : (
-                  <div className="flex h-14 w-14 items-center justify-center border border-[#E2E0D8] bg-[#F0EFE9] text-[#425D78] dark:border-[#282C34] dark:bg-[#15181D] dark:text-[#7E9BB8] shrink-0">
-                    <User className="h-6 w-6 stroke-[1.5]" aria-hidden="true" />
+                  <div className="mb-4 flex aspect-[16/10] w-full items-center justify-center border border-[#E2E0D8] bg-[#F0EFE9] text-[#425D78] dark:border-[#282C34] dark:bg-[#15181D] dark:text-[#7E9BB8]">
+                    <User className="h-8 w-8 stroke-[1.5]" aria-hidden="true" />
                   </div>
                 )}
 
-                <div className="min-w-0">
+                <div className="border-b border-[#E2E0D8] pb-3 dark:border-[#282C34]">
                   <p className="truncate font-display text-sm font-semibold text-[#171717] dark:text-[#F1F0EA]">
                     {profile.name}
                   </p>
-                  <p className="truncate text-xs text-[#626262] dark:text-[#B4B2AA]">
-                    {profile.school}
-                  </p>
-                  <p className="font-mono-tech text-[11px] text-[#425D78] dark:text-[#7E9BB8]">
-                    {profile.grade}
-                  </p>
+                  <div className="mt-0.5 flex items-center justify-between gap-2">
+                    <p className="truncate text-xs text-[#626262] dark:text-[#B4B2AA]">
+                      {profile.school}
+                    </p>
+                    <p className="font-mono-tech text-[11px] text-[#425D78] dark:text-[#7E9BB8] shrink-0">
+                      {profile.grade}
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              <dl className="divide-y divide-[#E2E0D8] text-xs dark:divide-[#282C34]">
-                <div className="flex items-center justify-between py-2.5">
+              <dl className="mt-1 divide-y divide-[#E2E0D8] text-xs dark:divide-[#282C34]">
+                <div className="flex items-center justify-between py-2">
                   <dt className="text-[#777777] dark:text-[#8C8B84]">Fokus Minat</dt>
                   <dd className="font-medium text-[#171717] dark:text-[#F1F0EA] text-right">
                     {profile.careerInterests.join(' · ')}
                   </dd>
                 </div>
-                <div className="flex items-center justify-between py-2.5">
+                <div className="flex items-center justify-between py-2">
                   <dt className="text-[#777777] dark:text-[#8C8B84]">Featured Project</dt>
                   <dd className="font-medium text-[#171717] dark:text-[#F1F0EA]">
                     {projects[0]?.title ?? '—'}
                   </dd>
                 </div>
-                <div className="flex items-center justify-between pt-2.5">
+                <div className="flex items-center justify-between pt-2">
                   <dt className="text-[#777777] dark:text-[#8C8B84]">Sertifikat Terverifikasi</dt>
                   <dd className="font-mono-tech font-medium text-[#425D78] dark:text-[#7E9BB8]">
                     {certificates.length} Dokumen

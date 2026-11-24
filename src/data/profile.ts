@@ -14,8 +14,7 @@ export const profile: ProfileData = {
   careerInterests: ['Cybersecurity', 'System Administration'],
   shortIntro:
     'Siswa kelas XI jurusan Teknik Komputer dan Jaringan (TKJ) di SMK Madinatulquran yang tertarik pada teknologi informasi, jaringan komputer, dan keamanan siber.',
-  // Ganti null menjadi '/images/profile.jpg' setelah menaruh foto asli di public/images/profile.jpg
-  photoUrl: null,
+  photoUrl: '/assets/aistudio/IMG-20260529-WA0065_0cd1cae5.jpg',
   photoAlt: 'Foto profil Royyan Abdurrahman',
   // Ganti null menjadi '/cv-royyan-abdurrahman.pdf' jika file CV sudah diletakkan di folder public/
   cvUrl: null,
