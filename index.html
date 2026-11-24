@@ -21,8 +21,18 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('portfolio-theme');
+          if (saved === 'dark') {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="bg-[#F7F6F2] text-[#171717] antialiased selection:bg-[#425D78] selection:text-white">
+  <body class="bg-[#F7F6F2] text-[#171717] dark:bg-[#0F1114] dark:text-[#F1F0EA] antialiased transition-colors duration-300 selection:bg-[#425D78] selection:text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

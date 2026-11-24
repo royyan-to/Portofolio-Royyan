@@ -3,18 +3,22 @@ import type { ProfileData } from './types';
 /**
  * Data profil pribadi terpusat untuk Royyan Abdurrahman.
  * Ubah informasi pada berkas ini untuk memperbarui profil, narasi About Me,
- * foto profil, maupun tautan kontak.
+ * foto profil, berkas CV, maupun tautan kontak.
  */
 export const profile: ProfileData = {
   name: 'Royyan Abdurrahman',
   title: 'IT Enthusiast & TKJ Student',
   location: 'Indonesia',
+  school: 'SMK Madinatulquran',
+  grade: 'Grade XI — TKJ',
   careerInterests: ['Cybersecurity', 'System Administration'],
   shortIntro:
     'Siswa kelas XI jurusan Teknik Komputer dan Jaringan (TKJ) di SMK Madinatulquran yang tertarik pada teknologi informasi, jaringan komputer, dan keamanan siber.',
   // Ganti null menjadi '/images/profile.jpg' setelah menaruh foto asli di public/images/profile.jpg
   photoUrl: null,
   photoAlt: 'Foto profil Royyan Abdurrahman',
+  // Ganti null menjadi '/cv-royyan-abdurrahman.pdf' jika file CV sudah diletakkan di folder public/
+  cvUrl: null,
   heroHeading: 'Building My Journey in Technology.',
   heroSupportText:
     'Exploring computer networking, cybersecurity, and system administration through continuous learning and AI-assisted projects.',
@@ -29,11 +33,11 @@ export const profile: ProfileData = {
     },
     {
       label: 'Cybersecurity',
-      detail: 'Membangun pemahaman awal keamanan siber untuk mendukung cita-cita di bidang Cybersecurity & System Administration.',
+      detail: 'Membangun fondasi keamanan siber menuju karier di bidang Cybersecurity & System Administration.',
     },
     {
       label: 'Pengembangan Berbantuan AI',
-      detail: 'Merancang konsep, menyusun kebutuhan fitur, mengarahkan AI melalui prompting, serta menguji hasil aplikasi.',
+      detail: 'Merancang konsep, menyusun kebutuhan fitur, mengarahkan AI melalui prompting, dan menguji hasil aplikasi.',
     },
   ],
   contacts: [

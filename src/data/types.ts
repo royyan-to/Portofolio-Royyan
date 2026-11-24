@@ -41,6 +41,7 @@ export interface ProjectItem {
   shortDescription: string;
   category: ProjectCategory;
   technologies: string[];
+  features: string[];
   image?: string;
   githubUrl?: string;
   objective: string;
@@ -49,7 +50,7 @@ export interface ProjectItem {
   learningOutcomes: string[];
   status: ProjectStatus;
   dateLabel?: string;
-  isSamplePlaceholder?: boolean;
+  featured?: boolean;
 }
 
 export type SkillStatus = 'Beginner / Basic' | 'Learning' | 'Practiced' | 'Familiar';
@@ -87,10 +88,13 @@ export interface ProfileData {
   name: string;
   title: string;
   location: string;
+  school: string;
+  grade: string;
   careerInterests: string[];
   shortIntro: string;
   photoUrl: string | null;
   photoAlt: string;
+  cvUrl: string | null;
   heroHeading: string;
   heroSupportText: string;
   aboutParagraphs: string[];

@@ -1,146 +1,183 @@
 import { useState } from 'react';
-import { ArrowDownRight, ArrowRight, User } from 'lucide-react';
+import { ArrowRight, Download, User } from 'lucide-react';
+import { motion } from 'motion/react';
+import { certificates } from '../data/certificates';
 import { profile } from '../data/profile';
+import { projects } from '../data/projects';
 
 interface HeroProps {
-  onExploreWork: () => void;
+  onViewProjects: () => void;
   onContact: () => void;
-  onJumpTo: (sectionId: string) => void;
 }
 
-const INDEX_LINKS = [
-  { num: '01', label: 'Certifications', target: 'certifications' },
-  { num: '02', label: 'Projects', target: 'projects' },
-  { num: '03', label: 'Technical Skills', target: 'skills' },
-  { num: '04', label: 'Education', target: 'journey' },
-] as const;
+const SWISS_EASE = [0.16, 1, 0.3, 1] as const;
 
-export function Hero({ onExploreWork, onContact, onJumpTo }: HeroProps) {
+export function Hero({ onViewProjects, onContact }: HeroProps) {
   const [imgError, setImgError] = useState(false);
   const showImage = Boolean(profile.photoUrl) && !imgError;
 
   return (
-    <section id="home" className="border-b border-[#E2E0D8]">
-      <div className="mx-auto max-w-6xl px-6 py-16 md:py-24 lg:px-10 lg:py-28">
-        {/* Identity Meta Strip (Unboxed typographic metadata) */}
-        <div className="mb-10 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-[#626262]">
-          <span className="font-medium text-[#171717]">{profile.name}</span>
-          <span aria-hidden="true" className="text-[#C8C5BA]">
+    <section
+      id="home"
+      className="border-b border-[#E2E0D8] transition-colors duration-300 dark:border-[#282C34]"
+    >
+      <div className="mx-auto max-w-6xl px-6 py-10 md:py-14 lg:px-10 lg:py-16">
+        {/* Identity Meta Strip (Stagger 1) */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0, ease: SWISS_EASE }}
+          className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[#626262] dark:text-[#B4B2AA] sm:text-sm"
+        >
+          <span className="font-medium text-[#171717] dark:text-[#F1F0EA]">
+            {profile.name}
+          </span>
+          <span aria-hidden="true" className="text-[#C8C5BA] dark:text-[#3B414D]">
             /
           </span>
           <span>{profile.title}</span>
-          <span aria-hidden="true" className="text-[#C8C5BA]">
+          <span aria-hidden="true" className="text-[#C8C5BA] dark:text-[#3B414D]">
             /
           </span>
           <span>{profile.location}</span>
-        </div>
+        </motion.div>
 
-        {/* Main 12-Column Swiss Split */}
-        <div className="grid grid-cols-1 items-stretch gap-12 lg:grid-cols-12 lg:gap-14">
+        {/* Compact 12-Column Swiss Split */}
+        <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-10">
           <div className="flex flex-col justify-between lg:col-span-8">
             <div>
-              <h1 className="font-display text-[clamp(2.5rem,5.4vw,4.5rem)] font-semibold leading-[1.06] tracking-[-0.03em] text-[#171717]">
+              {/* Headline (Stagger 2) */}
+              <motion.h1
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.08, ease: SWISS_EASE }}
+                className="font-display text-[clamp(2.2rem,4.6vw,3.75rem)] font-semibold leading-[1.08] tracking-[-0.03em] text-[#171717] dark:text-[#F1F0EA]"
+              >
                 {profile.heroHeading}
-              </h1>
+              </motion.h1>
 
-              <p className="mt-7 max-w-2xl text-base leading-relaxed text-[#626262] md:text-lg">
-                {profile.heroSupportText}
-              </p>
+              {/* Description (Stagger 3) */}
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.16, ease: SWISS_EASE }}
+              >
+                <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#626262] dark:text-[#B4B2AA] md:text-base">
+                  {profile.heroSupportText}
+                </p>
 
-              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#777777]">
-                {profile.shortIntro}
-              </p>
-
-              <p className="mt-4 text-xs text-[#626262]">
-                <span className="font-mono-tech text-[#425D78]">Career Interests:</span>{' '}
-                <span className="font-medium text-[#171717]">
-                  {profile.careerInterests.join(' · ')}
-                </span>
-              </p>
+                <p className="mt-3 text-xs text-[#626262] dark:text-[#B4B2AA]">
+                  <span className="font-mono-tech text-[#425D78] dark:text-[#7E9BB8]">
+                    Career Interests:
+                  </span>{' '}
+                  <span className="font-medium text-[#171717] dark:text-[#F1F0EA]">
+                    {profile.careerInterests.join(' · ')}
+                  </span>
+                </p>
+              </motion.div>
             </div>
 
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            {/* Buttons (Stagger 4) */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.24, ease: SWISS_EASE }}
+              className="mt-7 flex flex-wrap items-center gap-3"
+            >
               <button
                 type="button"
-                onClick={onExploreWork}
-                className="inline-flex min-h-[44px] items-center gap-2.5 bg-[#425D78] px-6 py-3 text-sm font-medium text-white transition-colors duration-150 hover:bg-[#334A60] whitespace-nowrap shrink-0 cursor-pointer"
+                onClick={onViewProjects}
+                className="group inline-flex min-h-[44px] items-center gap-2 bg-[#425D78] px-5 py-2.5 text-sm font-medium text-white transition-all duration-150 hover:bg-[#334A60] active:scale-[0.98] dark:bg-[#7E9BB8] dark:text-[#0F1114] dark:hover:bg-[#96B0CA] whitespace-nowrap shrink-0 cursor-pointer"
               >
-                <span>Explore My Work</span>
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                <span>View Projects</span>
+                <ArrowRight
+                  className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-0.5"
+                  aria-hidden="true"
+                />
               </button>
 
               <button
                 type="button"
                 onClick={onContact}
-                className="inline-flex min-h-[44px] items-center gap-2.5 border border-[#C8C5BA] bg-transparent px-6 py-3 text-sm font-medium text-[#171717] transition-colors duration-150 hover:border-[#171717] hover:bg-[#F0EFE9] whitespace-nowrap shrink-0 cursor-pointer"
+                className="inline-flex min-h-[44px] items-center gap-2 border border-[#C8C5BA] bg-white px-5 py-2.5 text-sm font-medium text-[#171717] transition-all duration-150 hover:border-[#171717] hover:bg-[#F0EFE9] active:scale-[0.98] dark:border-[#3B414D] dark:bg-[#1A1D23] dark:text-[#F1F0EA] dark:hover:border-[#7E9BB8] dark:hover:bg-[#22262E] whitespace-nowrap shrink-0 cursor-pointer"
               >
                 <span>Contact Me</span>
               </button>
-            </div>
+
+              {profile.cvUrl && (
+                <a
+                  href={profile.cvUrl}
+                  download
+                  className="inline-flex min-h-[44px] items-center gap-2 border border-[#E2E0D8] bg-transparent px-4 py-2.5 text-sm font-medium text-[#171717] transition-all duration-150 hover:border-[#171717] active:scale-[0.98] dark:border-[#282C34] dark:text-[#F1F0EA] dark:hover:border-[#7E9BB8] whitespace-nowrap shrink-0"
+                >
+                  <Download
+                    className="h-4 w-4 text-[#425D78] dark:text-[#7E9BB8]"
+                    aria-hidden="true"
+                  />
+                  <span>Download CV</span>
+                </a>
+              )}
+            </motion.div>
           </div>
 
-          {/* Right Column: Neutral Replaceable Portrait Placeholder */}
-          <div className="lg:col-span-4">
-            <div className="flex h-full min-h-[300px] flex-col justify-between border border-[#E2E0D8] bg-[#F0EFE9] p-6">
-              <div className="flex items-center justify-between text-xs text-[#777777]">
-                <span className="font-mono-tech">PORTRAIT SLOT</span>
-                <span className="font-mono-tech">01 : 01</span>
-              </div>
-
-              {showImage ? (
-                <div className="my-5 overflow-hidden border border-[#E2E0D8] bg-[#E8E6DF] aspect-[4/5]">
+          {/* Right Column: Compact Swiss Profile Summary Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.18, ease: SWISS_EASE }}
+            className="lg:col-span-4"
+          >
+            <div className="flex h-full flex-col justify-between border border-[#E2E0D8] bg-white p-5 transition-colors duration-300 dark:border-[#282C34] dark:bg-[#1A1D23]">
+              <div className="flex items-center gap-4 border-b border-[#E2E0D8] pb-4 dark:border-[#282C34]">
+                {showImage ? (
                   <img
                     src={profile.photoUrl as string}
                     alt={profile.photoAlt}
                     referrerPolicy="no-referrer"
                     onError={() => setImgError(true)}
-                    className="h-full w-full object-cover"
+                    className="h-14 w-14 border border-[#E2E0D8] object-cover dark:border-[#282C34] shrink-0"
                   />
-                </div>
-              ) : (
-                <div className="my-6 flex flex-1 flex-col items-center justify-center border border-dashed border-[#C8C5BA] bg-[#F7F6F2] px-6 py-10 text-center">
-                  <div className="flex h-16 w-16 items-center justify-center border border-[#E2E0D8] bg-[#F0EFE9] text-[#425D78]">
-                    <User className="h-7 w-7 stroke-[1.5]" aria-hidden="true" />
+                ) : (
+                  <div className="flex h-14 w-14 items-center justify-center border border-[#E2E0D8] bg-[#F0EFE9] text-[#425D78] dark:border-[#282C34] dark:bg-[#15181D] dark:text-[#7E9BB8] shrink-0">
+                    <User className="h-6 w-6 stroke-[1.5]" aria-hidden="true" />
                   </div>
-                  <p className="mt-4 font-display text-sm font-medium text-[#171717]">
+                )}
+
+                <div className="min-w-0">
+                  <p className="truncate font-display text-sm font-semibold text-[#171717] dark:text-[#F1F0EA]">
                     {profile.name}
                   </p>
-                  <p className="mt-1 text-xs leading-relaxed text-[#777777]">
-                    Belum ada foto profil yang ditambahkan. Slot dapat diisi di{' '}
-                    <span className="font-mono-tech text-[#425D78]">public/images/</span>.
+                  <p className="truncate text-xs text-[#626262] dark:text-[#B4B2AA]">
+                    {profile.school}
+                  </p>
+                  <p className="font-mono-tech text-[11px] text-[#425D78] dark:text-[#7E9BB8]">
+                    {profile.grade}
                   </p>
                 </div>
-              )}
-
-              <div className="flex items-center justify-between border-t border-[#E2E0D8] pt-3 text-xs text-[#626262]">
-                <span>SMK Madinatulquran</span>
-                <span className="font-mono-tech text-[#425D78]">XI TKJ</span>
               </div>
+
+              <dl className="divide-y divide-[#E2E0D8] text-xs dark:divide-[#282C34]">
+                <div className="flex items-center justify-between py-2.5">
+                  <dt className="text-[#777777] dark:text-[#8C8B84]">Fokus Minat</dt>
+                  <dd className="font-medium text-[#171717] dark:text-[#F1F0EA] text-right">
+                    {profile.careerInterests.join(' · ')}
+                  </dd>
+                </div>
+                <div className="flex items-center justify-between py-2.5">
+                  <dt className="text-[#777777] dark:text-[#8C8B84]">Featured Project</dt>
+                  <dd className="font-medium text-[#171717] dark:text-[#F1F0EA]">
+                    {projects[0]?.title ?? '—'}
+                  </dd>
+                </div>
+                <div className="flex items-center justify-between pt-2.5">
+                  <dt className="text-[#777777] dark:text-[#8C8B84]">Sertifikat Terverifikasi</dt>
+                  <dd className="font-mono-tech font-medium text-[#425D78] dark:text-[#7E9BB8]">
+                    {certificates.length} Dokumen
+                  </dd>
+                </div>
+              </dl>
             </div>
-          </div>
-        </div>
-
-        {/* Full-Width 4-Column Structural Index Row */}
-        <div className="mt-14 grid grid-cols-2 border-t border-l border-[#E2E0D8] md:grid-cols-4">
-          {INDEX_LINKS.map((item) => (
-            <button
-              key={item.target}
-              type="button"
-              onClick={() => onJumpTo(item.target)}
-              className="group flex items-center justify-between border-r border-b border-[#E2E0D8] bg-transparent px-4 py-4 text-left transition-colors duration-150 hover:bg-[#F0EFE9] cursor-pointer"
-            >
-              <div>
-                <span className="block font-mono-tech text-xs text-[#777777]">{item.num}</span>
-                <span className="mt-0.5 block text-sm font-medium text-[#171717] group-hover:text-[#425D78]">
-                  {item.label}
-                </span>
-              </div>
-              <ArrowDownRight
-                className="h-4 w-4 text-[#777777] transition-transform duration-150 group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:text-[#425D78]"
-                aria-hidden="true"
-              />
-            </button>
-          ))}
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   :root {
@@ -12,9 +13,26 @@
     --accent-hover: #334a60;
     --border-subtle: #e2e0d8;
     --border-strong: #c8c5ba;
+    --grid-line: rgba(23, 23, 23, 0.04);
+    --ambient-glow: rgba(66, 93, 120, 0.07);
     --font-display: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
     --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+  }
+
+  .dark {
+    --bg-canvas: #0f1114;
+    --bg-surface: #15181d;
+    --bg-card: #1a1d23;
+    --text-primary: #f1f0ea;
+    --text-secondary: #b4b2aa;
+    --text-muted: #8c8b84;
+    --accent: #7e9bb8;
+    --accent-hover: #96b0ca;
+    --border-subtle: #282c34;
+    --border-strong: #3b414d;
+    --grid-line: rgba(241, 240, 234, 0.035);
+    --ambient-glow: rgba(126, 155, 184, 0.08);
   }
 
   html {
@@ -23,6 +41,7 @@
     color: var(--text-primary);
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
+    transition: background-color 300ms ease, color 300ms ease;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -60,4 +79,26 @@
 .font-mono-tech {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
+}
+
+@keyframes subtle-ambient-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -2%, 0) scale(1.03);
+  }
+}
+
+.ambient-drift {
+  animation: subtle-ambient-drift 24s ease-in-out infinite;
+  will-change: transform;
+}
+
+.swiss-grid-bg {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 72px 72px;
 }

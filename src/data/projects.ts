@@ -13,17 +13,23 @@ export const PROJECT_CATEGORIES: readonly ProjectCategory[] = [
 
 /**
  * Daftar proyek nyata milik Royyan Abdurrahman.
- * Simpan gambar/screenshot proyek di public/projects/ lalu tambahkan properti `image: '/projects/...'`
+ * Simpan screenshot aplikasi di public/projects/ lalu tambahkan properti `image: '/projects/...'`
  * jika tangkapan layar aplikasi sudah tersedia.
  */
 export const projects: ProjectItem[] = [
   {
     slug: 'usahapilot-ai',
     title: 'UsahaPilot AI',
+    featured: true,
     shortDescription:
       'An Android application designed to help small and medium-sized businesses (UMKM) manage their business operations through digital tools and AI assistance.',
     category: 'AI-Assisted Development',
-    technologies: ['Android', 'Google AI Studio', 'AI-Assisted Development', 'Git', 'GitHub'],
+    technologies: ['Android', 'Google AI Studio', 'AI Prompting', 'Git', 'GitHub'],
+    features: [
+      'Digital tools for managing daily UMKM business operations on Android.',
+      'AI assistance to help business owners organize and evaluate operational workflows.',
+      'Iterative requirement planning and usability testing during active development.',
+    ],
     githubUrl: 'https://github.com/royyan-to/FOR-UMKM',
     objective:
       'Membantu pelaku usaha mikro, kecil, dan menengah (UMKM) mengelola operasional usaha secara lebih teratur menggunakan alat bantu digital dan asistensi AI pada perangkat Android.',
@@ -38,7 +44,7 @@ export const projects: ProjectItem[] = [
     learningOutcomes: [
       'Memahami cara merumuskan ide produk dan memecahnya menjadi kebutuhan fitur yang jelas.',
       'Melatih kemampuan mengarahkan proses pengembangan aplikasi berbantuan AI secara iteratif melalui prompting.',
-      'Membiasakan proses pengujian fungsional, identifikasi bug/kendala, serta evaluasi hasil perbaikan.',
+      'Membiasakan proses pengujian fungsional, identifikasi kendala, serta evaluasi hasil perbaikan.',
     ],
     status: 'In Development',
     dateLabel: 'In Development',
